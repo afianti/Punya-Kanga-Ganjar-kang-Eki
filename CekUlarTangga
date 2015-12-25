@@ -1,0 +1,106 @@
+#include <stdio.h>
+
+int CekAdaUlarTangga(int Petak, int status)
+{
+	int PetakSebelumnya,Dadu,StatusNaik,StatusTurun;
+	PetakSebelumnya=Petak;
+
+	//nginjek tangga
+	if (Petak==3||Petak==8||Petak==19||Petak==27||Petak==39||Petak==50||Petak==62||Petak==70)
+    {
+            //Pengecekan apakah yang main Pemain manusia atau Pemain komputer
+        if (status==1)//yang main adalah Pemain Manusia
+        {
+            srand(time(NULL));
+            gotoxy(67,17);printf("Tekan Enter untuk mengocok dadu");
+            getch();
+            gotoxy(67,17);printf("                                        ");
+        }
+        else if (status==0)//yang main adalah Pemain komputer
+        {
+            srand(time(NULL));
+        }
+        if ((Dadu=KocokDadu())==6)
+        {
+            StatusNaik=1;
+            switch(Petak)
+            {
+                case 3:Petak=13;break;
+                case 8:Petak=30;break;
+                case 19:Petak=37;break;
+                case 27:Petak=83;break;
+                case 39:Petak=58;break;
+                case 50:Petak=66;break;
+                case 62:Petak=80;break;
+                case 70:Petak=90;break;
+
+            }
+        }
+        else
+        {
+            StatusNaik=0;
+        }
+    }
+
+    //nginjek ular
+    if (Petak==98||Petak==94||Petak==92||Petak==86||Petak==63||Petak==61||Petak==53||Petak==16)
+    {
+            //Pengecekan apakah yang main Pemain manusia atau Pemain komputer
+        if (status==1)//yang main adalah Pemain Manusia
+        {
+            srand(time(NULL));
+            gotoxy(67,17);printf("Tekan Enter untuk mengocok dadu");
+            getch();
+            gotoxy(67,17);printf("                                        ");
+        }
+        else if (status==0)//yang main adalah Pemain komputer
+        {
+            srand(time(NULL));
+        }
+        if ((Dadu=KocokDadu())!=6)
+        {
+            StatusTurun=1;
+            switch(Petak)
+            {
+                case 98:Petak=77;break;
+                case 94:Petak=74;break;
+                case 92:Petak=72;break;
+                case 86:Petak=23;break;
+                case 63:Petak=59;break;
+                case 61:Petak=18;break;
+                case 53:Petak=33;break;
+                case 16:Petak=6;break;
+
+            }
+        }
+        else
+        {
+            StatusTurun=0;
+        }
+    }
+
+    //Status Naik
+    if (StatusNaik==1)
+    {
+        gotoxy(67,18);printf("Berhasil mendapat dadu nomor enam");
+    }
+    else if (StatusNaik==0)
+    {
+        gotoxy(67,18);printf("Gagal mendapat dadu nomor enam");
+    }
+
+    //Status Turun
+    if (StatusTurun==1)
+    {
+        gotoxy(67,18);printf("Gagal mendapat dadu nomor enam");
+    }
+    else if (StatusTurun==0)
+    {
+        gotoxy(67,18);printf("Berhasil mendapat dadu nomor enam");
+    }
+	gotoxy(67,19);printf("Ada di kotak %d",Petak+1);
+	Sleep(2000);
+	gotoxy(67,18);printf("                                                  ");
+	gotoxy(67,19);printf("                                                  ");
+    return Petak;
+}
